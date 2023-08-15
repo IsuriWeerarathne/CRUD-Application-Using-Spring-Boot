@@ -65,11 +65,13 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete(){//delete by id
         Integer userId=1;
         repo.deleteById(userId);
 
         Optional<User> optionalUser = repo.findById(userId);
         Assertions.assertThat(optionalUser).isNotPresent();
     }
+
+
 }
