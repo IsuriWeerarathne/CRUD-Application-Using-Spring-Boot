@@ -27,6 +27,7 @@ public class UserController {
     @GetMapping("/users/new")
     public String showNewForm(Model model){
         model.addAttribute("user",new User());
+        model.addAttribute("pageTitle","Add New User");
         return "user_form";
     }
 
@@ -38,8 +39,10 @@ public class UserController {
     }
 
     @GetMapping("/users/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model){
-        service.get(id);
-        return null;
+    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
+        User user = service.get(id);
+        model.addAttribute("user",user);
+        model.addAttribute("pageTitle","Edit User (" + id + ")");
+        return "user_form";
     }
 }
